@@ -1,0 +1,22 @@
+package Intermediate1.enumeration.ref1;
+
+public class ClassGrade {
+    public static final ClassGrade BASIC = new ClassGrade(10);
+    public static final ClassGrade GOLD = new ClassGrade(20);
+    public static final ClassGrade DIAMOND = new ClassGrade(30);
+
+    private final int discountPercent;
+
+    private ClassGrade(int discountPercent){
+        this.discountPercent = discountPercent;
+    }
+
+    public int getDiscountPercent(){
+        return discountPercent;
+    }
+
+//    // 외부에서 인스턴스 생성 못하게 막음
+//    private ClassGrade(){
+//
+//    }
+}
