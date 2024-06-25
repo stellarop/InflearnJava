@@ -1,4 +1,4 @@
-package Intermediate2.generic.test;
+package Intermediate2.generic.test.ex1;
 
 public class ContainerTest {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package Intermediate2.generic.test;
+package Intermediate2.generic.test.ex2;
 
 public class PairTest {
     public static void main(String[] args) {

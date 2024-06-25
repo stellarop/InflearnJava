@@ -1,4 +1,4 @@
-package Intermediate2.generic.test;
+package Intermediate2.generic.test.ex2;
 
 public class Pair<T1, T2> {
     private T1 first;
