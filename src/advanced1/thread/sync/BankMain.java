@@ -1,5 +1,9 @@
 package advanced1.thread.sync;
 
+import advanced1.thread.sync.test.BankAccountV4;
+import advanced1.thread.sync.test.BankAccountV5;
+import advanced1.thread.sync.test.BankAccountV6;
+
 import static advanced1.util.MyLogger.log;
 import static advanced1.util.ThreadUtils.sleep;
 
@@ -18,7 +22,10 @@ public class BankMain {
         // BankAccountV2 account = new BankAccountV2(10000);
 
         // 임계 영역을 메서드가 아닌 코드 블록에만 설정
-        BankAccountV3 account = new BankAccountV3(10000);
+        // BankAccountV3 account = new BankAccountV3(10000);
+        // BankAccountV4 account = new BankAccountV4(10000);
+        // BankAccountV5 account = new BankAccountV5(10000);
+        BankAccountV6 account = new BankAccountV6(10000);
         Thread t1 = new Thread(new WithdrawTask(account, 8000), "t1");
         Thread t2 = new Thread(new WithdrawTask(account, 8000), "t2");
         // t1 스레드 시작
