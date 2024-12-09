@@ -2,6 +2,8 @@ package advanced1.thread.bounded;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 import static advanced1.util.MyLogger.log;
 import static advanced1.util.ThreadUtils.sleep;
@@ -9,7 +11,8 @@ import static advanced1.util.ThreadUtils.sleep;
 public class BoundedMain {
     public static void main(String[] args) {
         // BoundedQueue 선택
-        BoundedQueue queue = new BoundedQueueV3(2);
+        // BoundedQueue queue = new BoundedQueueV6_4( 2);
+        BlockingQueue<String> queue = new ArrayBlockingQueue<>(2);
 
         // 생산자 소비자 실행 순서 선택
 
@@ -19,7 +22,7 @@ public class BoundedMain {
 
     }
 
-    private static void producerFirst(BoundedQueue queue){
+    private static void producerFirst(BlockingQueue queue){
         log("== [생산자 먼저 실행] 시작, " + queue.getClass().getSimpleName()
                 + " ==");
         // 스레드를 담을 리스트 생성
@@ -37,7 +40,7 @@ public class BoundedMain {
                 + " ==");
     }
 
-    private static void consumerFirst(BoundedQueue queue){
+    private static void consumerFirst(BlockingQueue queue){
         log("== [소비자 먼저 실행] 시작, " + queue.getClass().getSimpleName()
                 + " ==");
         // 스레드를 담을 리스트 생성
@@ -57,7 +60,7 @@ public class BoundedMain {
                 + " ==");
     }
 
-    private static void startProducer(BoundedQueue queue, List<Thread> threads){
+    private static void startProducer(BlockingQueue queue, List<Thread> threads){
         System.out.println();
         log("생산자 시작");
 
@@ -73,7 +76,7 @@ public class BoundedMain {
 
     }
 
-    private static void startConsumer(BoundedQueue queue, List<Thread> threads){
+    private static void startConsumer(BlockingQueue queue, List<Thread> threads){
         System.out.println();
         log("소비자 시작");
 
@@ -88,7 +91,7 @@ public class BoundedMain {
         }
     }
 
-    private static void printAllState(BoundedQueue queue, List<Thread> threads) {
+    private static void printAllState(BlockingQueue queue, List<Thread> threads) {
         System.out.println();
         log("현재 상태 출력");
         log("큐 데이터 : " + queue);
