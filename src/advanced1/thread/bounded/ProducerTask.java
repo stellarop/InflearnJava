@@ -1,12 +1,14 @@
 package advanced1.thread.bounded;
 
+import java.util.concurrent.BlockingQueue;
+
 import static advanced1.util.MyLogger.log;
 
 public class ProducerTask implements Runnable{
-    private BoundedQueue queue;
+    private BlockingQueue<String> queue;
     private String request;
 
-    public ProducerTask(BoundedQueue queue, String request) {
+    public ProducerTask(BlockingQueue<String> queue, String request) {
         this.queue = queue;
         this.request = request;
     }
@@ -14,7 +16,11 @@ public class ProducerTask implements Runnable{
     @Override
     public void run() {
         log("[생산 시도] : " + request + " -> " + queue);
-        queue.put(request);
+        try {
+            queue.put(request);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         log("[생산 완료] : " + request + " -> " + queue);
     }
 }
