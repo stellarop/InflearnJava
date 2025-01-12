@@ -6,7 +6,7 @@ import static advanced1.util.MyLogger.log;
 import static advanced1.util.ThreadUtils.sleep;
 
 // Callable 상속 제네릭 타입은 String
-public class OldOrderService implements Callable<String> {
+public class OldOrderService implements Callable<Boolean> {
 
     // 시스템 이름
     private String system;
@@ -22,8 +22,9 @@ public class OldOrderService implements Callable<String> {
 
     // Callable 상속 후 call() 메서드 재정의 (스레드의 리턴 값!)
     @Override
-    public String call(){
-        return system + " : " + orderNo;
+    public Boolean call(){
+        log(system + " : " + orderNo);
+        return true;
     }
 
     // 기존 소스

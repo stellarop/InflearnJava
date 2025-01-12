@@ -15,24 +15,29 @@ public class OldOrderServiceTestMain {
         ExecutorService es = Executors.newFixedThreadPool(3);
 
         // 스레드 생성
-        OldOrderService oldOrderService1
+        OldOrderService inventoryResult
                 = new OldOrderService("재고 업데이트", orderNo);
-        OldOrderService oldOrderService2
+        OldOrderService shippingResult
                 = new OldOrderService("배송 시스템 업데이트", orderNo);
-        OldOrderService oldOrderService3
+        OldOrderService accountingResult
                 = new OldOrderService("회계 시스템 업데이트", orderNo);
 
         // 스레드 인스턴스를 List 에 삽입한다
         List<OldOrderService> orderList
-                = List.of(oldOrderService1, oldOrderService2, oldOrderService3);
+                = List.of(inventoryResult, shippingResult, accountingResult);
         // Future 객체 생성
-        List<Future<String>> futures = es.invokeAll(orderList);
+        List<Future<Boolean>> futures = es.invokeAll(orderList);
 
-        for (Future<String> future : futures) {
+        for (Future<Boolean> future : futures) {
             // 스레드 3개의 결과값을 모두 리턴
-            String value = future.get();
-            log(value);
+            boolean result = future.get();
+
+            if(!result){
+                log("일부 작업이 실패했습니다.");
+                return;
+            }
         }
+        log("모든 주문 처리가 성공적으로 완료되었습니다.");
 
         // ExecutorService 종료
         es.shutdown();
